@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ActionList from './components/ActionList';
 import ImpactSummary from './components/ImpactSummary';
+import GoalTracker from './components/Goal'; 
 
 function App() {
   const [trackedActions, setTrackedActions] = useState(() => {
@@ -43,14 +44,25 @@ function App() {
 
   return (
     <div>
-      <h1>Eco-Friendly Actions</h1>
-      <ActionList onAddAction={handleAddAction} />
-      <ImpactSummary
-        trackedActions={trackedActions}
-        totalReduction={totalReduction}
-        onClear={handleClearActions}
-        onDeleteAction={handleDeleteAction}
-      />
+      <h1>Eco-Friendly Actions Tracker</h1>
+      <div className="container">
+        {/* Action List */}
+        <div className="action-list-container">
+          <ActionList onAddAction={handleAddAction} />
+        </div>
+
+        {/* Impact Summary */}
+        <div className="impact-summary-container">
+          <ImpactSummary
+            trackedActions={trackedActions}
+            totalReduction={totalReduction}
+            onClear={handleClearActions}
+            onDeleteAction={handleDeleteAction}
+          />
+        </div>
+
+        <GoalTracker totalReduction={totalReduction} />
+      </div>
     </div>
   );
 }
